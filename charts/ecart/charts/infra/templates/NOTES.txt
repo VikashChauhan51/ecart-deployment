@@ -1,0 +1,39 @@
+### Application Configuration Details
+
+#### Secret Store
+{{- if .Values.secretStore.localk8.enable }}
+- **Secret Store:**
+  - Name: {{ .Values.secretStore.localk8.name }}
+  - Status: Enabled
+{{- else }}
+- **Secret Store:**
+  - Status: Disabled
+{{- end }}
+
+#### State Store
+{{- if .Values.stateStore.redis.enable }}
+- **State Store:**
+  - Name: {{ .Values.stateStore.redis.name }}
+  - Redis Host: {{ .Values.stateStore.redis.redisHost }}
+  - Actor State Store: {{ .Values.stateStore.redis.actorStateStore }}
+  - TLS Enabled: {{ .Values.stateStore.redis.enableTLS }}
+{{- else }}
+- **State Store:**
+  - Status: Disabled
+{{- end }}
+
+#### Pub/Sub
+{{- if .Values.pubsub.kafka.enable }}
+- **Pub/Sub:**
+  - Name: {{ .Values.pubsub.kafka.name }}
+  - Broker: {{ .Values.pubsub.kafka.broker }}
+  - TLS Disabled: {{ .Values.pubsub.kafka.disableTls }}
+{{- else }}
+- **Pub/Sub:**
+  - Status: Disabled
+{{- end }}
+
+### Additional Information
+- Check the status of your deployment with:
+  ```sh
+  kubectl get pods -l release={{ .Release.Name }}

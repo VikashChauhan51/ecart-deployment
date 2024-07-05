@@ -1,0 +1,18 @@
+{{- if .Values.pubsub.kafka.enable -}}
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: kafka-pubsub
+  labels: {{- include "infra.labels" . | nindent 4 }}-pubsub
+  namespace: {{ .Release.Namespace | quote }}
+spec:
+  type: pubsub.kafka
+  version: v1
+  metadata:
+  - name: brokers 
+    value: {{ .Values.pubsub.kafka.broker }}
+  - name: authRequired
+    value: "false"
+  - name: disableTls 
+    value: "true"
+{{- end -}}

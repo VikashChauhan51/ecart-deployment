@@ -1,0 +1,19 @@
+secretStore:
+  localk8:
+      enable: true
+      name: local-k8-secret-store
+stateStore:
+  redis:
+      enable: true
+      name: state-redis
+      redisHost: "redis-master.default.svc.cluster.local:6379"
+      password: ""
+      actorStateStore: true
+      enableTLS: false
+pubsub:
+  kafka:
+      enable: true
+      name: pubsub-kafka
+      broker: "kafka.default.svc.cluster.local:9092"
+      password: ""
+      disableTls: true
