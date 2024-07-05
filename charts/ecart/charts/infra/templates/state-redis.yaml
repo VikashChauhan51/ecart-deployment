@@ -17,4 +17,8 @@ spec:
     value: {{ .Values.stateStore.redis.enableTLS }}
   - name: actorStateStore
     value: {{ .Values.stateStore.redis.actorStateStore }}
+  - name: maxmemory-policy
+    value: "allkeys-lru"
+  - name: maxmemory
+    value: "256mb"
 {{- end -}}
