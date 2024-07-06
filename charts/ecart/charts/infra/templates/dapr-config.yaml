@@ -1,0 +1,34 @@
+apiVersion: dapr.io/v1alpha1
+kind: Subscription
+metadata:
+  name: order-subscription
+spec:
+  topic: order-created
+  route: /orderEvents/order-created
+  pubsubname: kafka-pubsub
+scopes:
+- myapp
+
+---
+apiVersion: dapr.io/v1alpha1
+kind: Subscription
+metadata:
+  name: payment-subscription
+spec:
+  topic: payment-received
+  route: /paymentEvents/payment-received
+  pubsubname: kafka-pubsub
+scopes:
+- myapp
+
+---
+apiVersion: dapr.io/v1alpha1
+kind: Subscription
+metadata:
+  name: shipment-subscription
+spec:
+  topic: shipment-dispatched
+  route: /shipmentEvents/shipment-dispatched
+  pubsubname: kafka-pubsub
+scopes:
+- myapp
